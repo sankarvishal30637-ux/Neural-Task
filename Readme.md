@@ -63,7 +63,7 @@ The application provides a futuristic AI-themed dashboard with task statistics, 
 
 👨‍💻 Author
 
-Your Name
+Vishal S S
 
 ---
 
