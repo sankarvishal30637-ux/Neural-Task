@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Neural Tasks — AI & ML Todo</title>
+
+<style>
+
+/* =====================================================
+   GOOGLE FONTS
+===================================================== */
+
+@import url(
+'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@500;600;700&display=swap'
+);
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --bg:#050816;
+
+  --bg2:#091127;
+
+  --card:rgba(15,23,48,.72);
+
+  --card2:rgba(20,30,60,.75);
+
+  --text:#F4F7FF;
+
+  --muted:#8290B3;
+
+  --purple:#8B5CF6;
+
+  --blue:#38BDF8;
+
+  --cyan:#22D3EE;
+
+  --green:#34D399;
+
+  --pink:#F472B6;
+
+  --yellow:#FBBF24;
+
+  --red:#FB7185;
+
+  --border:rgba(255,255,255,.08);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+  box-sizing:border-box;
+
+}
+
+
+html,
+body{
+
+  min-height:100%;
+
+}
+
+
+body{
+
+  margin:0;
+
+  font-family:
+    'Space Grotesk',
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(139,92,246,.20),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(56,189,248,.16),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(34,211,238,.10),
+      transparent 35%
+    ),
+
+    var(--bg);
+
+  display:flex;
+
+  justify-content:center;
+
+  padding:
+    35px 18px 80px;
+
+  overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:420px;
+
+  height:420px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(139,92,246,.12);
+
+  top:-180px;
+
+  left:-150px;
+
+  animation:
+    rotateOrb 18s
+    linear
+    infinite;
+
+  pointer-events:none;
+
+}
+
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  width:360px;
+
+  height:360px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(56,189,248,.10);
+
+  bottom:-170px;
+
+  right:-120px;
+
+  animation:
+    rotateOrb 24s
+    linear
+    infinite reverse;
+
+  pointer-events:none;
+
+}
+
+
+@keyframes rotateOrb{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
+
+  width:100%;
+
+  max-width:850px;
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:25px;
+
+  animation:
+    headerIn .7s
+    cubic-bezier(.34,1.56,.64,1);
+
+}
+
+
+@keyframes headerIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(-25px)
+      scale(.96);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+.brand{
+
+  display:flex;
+
+  gap:12px;
+
+  align-items:center;
+
+}
+
+
+.ai-icon{
+
+  width:48px;
+
+  height:48px;
+
+  border-radius:15px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:23px;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--blue)
+    );
+
+  box-shadow:
+
+    0 0 30px
+    rgba(139,92,246,.30);
+
+  animation:
+    iconFloat 3s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes iconFloat{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-5px);
+  }
+
+}
+
+
+.title{
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size:
+    1.65rem;
+
+  font-weight:700;
+
+  letter-spacing:
+    -.03em;
+
+}
+
+
+.title span{
+
+  color:
+    var(--cyan);
+
+}
+
+
+.subtitle{
+
+  color:
+    var(--muted);
+
+  font-size:
+    .76rem;
+
+  margin-top:4px;
+
+}
+
+
+.status{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    8px 12px;
+
+  border-radius:999px;
+
+  background:
+    rgba(52,211,153,.08);
+
+  border:
+    1px solid
+    rgba(52,211,153,.15);
+
+  color:
+    var(--green);
+
+  font-size:
+    .62rem;
+
+  font-weight:700;
+
+}
+
+
+.status-dot{
+
+  width:7px;
+
+  height:7px;
+
+  border-radius:50%;
+
+  background:
+    var(--green);
+
+  box-shadow:
+    0 0 10px
+    var(--green);
+
+  animation:
+    statusPulse 1.8s
+    infinite;
+
+}
+
+
+@keyframes statusPulse{
+
+  50%{
+    opacity:.35;
+    transform:scale(.7);
+  }
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:18px;
+
+}
+
+
+.stat{
+
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  backdrop-filter:
+    blur(18px);
+
+  border-radius:18px;
+
+  padding:
+    15px;
+
+  animation:
+    cardIn .6s
+    both;
+
+}
+
+
+.stat:nth-child(1){
+  animation-delay:.1s;
+}
+
+.stat:nth-child(2){
+  animation-delay:.18s;
+}
+
+.stat:nth-child(3){
+  animation-delay:.26s;
+}
+
+
+@keyframes cardIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(15px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+.stat-label{
+
+  color:
+    var(--muted);
+
+  font-size:
+    .62rem;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .08em;
+
+}
+
+
+.stat-value{
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size:
+    1.35rem;
+
+  margin-top:6px;
+
+}
+
+
+.stat:nth-child(1)
+.stat-value{
+
+  color:
+    var(--cyan);
+
+}
+
+
+/* =====================================================
+   ADD TASK CARD
+===================================================== */
+
+.add-card{
+
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    22px;
+
+  padding:
+    14px;
+
+  backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.20);
+
+  margin-bottom:
+    17px;
+
+  animation:
+    cardIn .7s
+    .25s
+    both;
+
+}
+
+
+.add-row{
+
+  display:flex;
+
+  gap:9px;
+
+}
+
+
+.add-row input{
+
+  flex:1;
+
+  min-width:0;
+
+  border:
+    1px solid
+    rgba(255,255,255,.05);
+
+  background:
+    rgba(255,255,255,.035);
+
+  border-radius:
+    14px;
+
+  padding:
+    13px 15px;
+
+  color:
+    var(--text);
+
+  font-family:
+    inherit;
+
+  font-size:
+    .88rem;
+
+  outline:none;
+
+  transition:
+    .2s;
+
+}
+
+
+.add-row input::placeholder{
+
+  color:
+    #5F6D91;
+
+}
+
+
+.add-row input:focus{
+
+  border-color:
+    var(--purple);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(139,92,246,.10);
+
+}
+
+
+.add-btn{
+
+  border:none;
+
+  border-radius:
+    14px;
+
+  padding:
+    0 20px;
+
+  cursor:pointer;
+
+  color:white;
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size:
+    .65rem;
+
+  font-weight:700;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--blue)
+    );
+
+  transition:
+    transform .15s,
+    box-shadow .15s;
+
+}
+
+
+.add-btn:hover{
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(139,92,246,.25);
+
+}
+
+
+.add-btn:active{
+
+  transform:
+    scale(.96);
+
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+.categories{
+
+  display:flex;
+
+  gap:7px;
+
+  margin-top:10px;
+
+  overflow-x:auto;
+
+}
+
+
+.category{
+
+  border:none;
+
+  white-space:nowrap;
+
+  padding:
+    6px 10px;
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  color:
+    var(--muted);
+
+  font-family:
+    inherit;
+
+  font-size:
+    .61rem;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+}
+
+
+.category:hover,
+.category.selected{
+
+  background:
+    rgba(56,189,248,.12);
+
+  color:
+    var(--cyan);
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.control-row{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:center;
+
+  margin-bottom:
+    13px;
+
+}
+
+
+.filters{
+
+  display:flex;
+
+  gap:4px;
+
+  padding:4px;
+
+  border-radius:
+    999px;
+
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+}
+
+
+.filters button{
+
+  border:none;
+
+  background:none;
+
+  color:
+    var(--muted);
+
+  border-radius:
+    999px;
+
+  padding:
+    7px 12px;
+
+  font-family:
+    inherit;
+
+  font-weight:600;
+
+  font-size:
+    .62rem;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+}
+
+
+.filters button.active{
+
+  background:
+    var(--purple);
+
+  color:white;
+
+  box-shadow:
+    0 5px 15px
+    rgba(139,92,246,.25);
+
+}
+
+
+.progress-text{
+
+  color:
+    var(--cyan);
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size:
+    .62rem;
+
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+.progress{
+
+  height:
+    7px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border-radius:
+    999px;
+
+  overflow:hidden;
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.progress-fill{
+
+  height:100%;
+
+  width:0%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--purple),
+      var(--blue),
+      var(--cyan)
+    );
+
+  border-radius:
+    999px;
+
+  transition:
+    width .6s
+    cubic-bezier(.34,1.2,.64,1);
+
+  box-shadow:
+    0 0 15px
+    rgba(56,189,248,.35);
+
+}
+
+
+/* =====================================================
+   TASK
+===================================================== */
+
+ul{
+
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+
+}
+
+
+.task{
+
+  position:relative;
+
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  backdrop-filter:
+    blur(16px);
+
+  border-radius:
+    20px;
+
+  padding:
+    15px;
+
+  margin-bottom:
+    11px;
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:11px;
+
+  transition:
+    transform .2s,
+    border-color .2s,
+    box-shadow .2s;
+
+  animation:
+    taskIn .45s
+    cubic-bezier(.34,1.56,.64,1);
+
+}
+
+
+@keyframes taskIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(18px)
+      scale(.96);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+.task:hover{
+
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(139,92,246,.20);
+
+  box-shadow:
+    0 15px 35px
+    rgba(0,0,0,.22);
+
+}
+
+
+.task.done{
+
+  background:
+    rgba(52,211,153,.055);
+
+}
+
+
+.check{
+
+  width:26px;
+
+  height:26px;
+
+  flex-shrink:0;
+
+  border-radius:
+    9px;
+
+  border:
+    2px solid
+    #344263;
+
+  background:
+    transparent;
+
+  color:
+    #06120F;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:700;
+
+  transition:.2s;
+
+}
+
+
+.check:hover{
+
+  border-color:
+    var(--cyan);
+
+  transform:
+    scale(1.08);
+
+}
+
+
+.task.done .check{
+
+  background:
+    var(--green);
+
+  border-color:
+    var(--green);
+
+  animation:
+    checkPop .4s;
+
+}
+
+
+@keyframes checkPop{
+
+  0%{
+    transform:scale(1);
+  }
+
+  40%{
+    transform:scale(.72);
+  }
+
+  70%{
+    transform:scale(1.18);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+
+}
+
+
+.task-content{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.task-text{
+
+  font-size:
+    .88rem;
+
+  font-weight:600;
+
+  line-height:
+    1.4;
+
+  word-break:
+    break-word;
+
+}
+
+
+.task.done .task-text{
+
+  color:
+    var(--muted);
+
+  text-decoration:
+    line-through;
+
+  text-decoration-color:
+    var(--green);
+
+}
+
+
+.task-meta{
+
+  display:flex;
+
+  gap:6px;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  margin-top:7px;
+
+}
+
+
+.badge{
+
+  font-size:
+    .53rem;
+
+  padding:
+    4px 7px;
+
+  border-radius:
+    999px;
+
+  font-weight:700;
+
+}
+
+
+.badge.python{
+
+  color:
+    var(--yellow);
+
+  background:
+    rgba(251,191,36,.08);
+
+}
+
+
+.badge.ml{
+
+  color:
+    var(--purple);
+
+  background:
+    rgba(139,92,246,.10);
+
+}
+
+
+.badge.dl{
+
+  color:
+    var(--pink);
+
+  background:
+    rgba(244,114,182,.09);
+
+}
+
+
+.badge.data{
+
+  color:
+    var(--cyan);
+
+  background:
+    rgba(34,211,238,.08);
+
+}
+
+
+.time{
+
+  font-size:
+    .54rem;
+
+  color:
+    var(--muted);
+
+}
+
+
+.actions{
+
+  display:flex;
+
+  gap:5px;
+
+}
+
+
+.actions button{
+
+  border:none;
+
+  border-radius:
+    9px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  color:
+    var(--muted);
+
+  padding:
+    6px 8px;
+
+  font-family:
+    inherit;
+
+  font-size:
+    .57rem;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.16s;
+
+}
+
+
+.actions button:hover{
+
+  background:
+    rgba(56,189,248,.10);
+
+  color:
+    var(--cyan);
+
+}
+
+
+.actions .delete:hover{
+
+  background:
+    rgba(251,113,133,.10);
+
+  color:
+    var(--red);
+
+}
+
+
+/* =====================================================
+   EDIT
+===================================================== */
+
+.edit-input{
+
+  width:100%;
+
+  background:
+    rgba(0,0,0,.20);
+
+  border:
+    1px solid
+    var(--purple);
+
+  border-radius:
+    9px;
+
+  padding:
+    7px 9px;
+
+  color:
+    white;
+
+  outline:none;
+
+  font-family:
+    inherit;
+
+  font-size:
+    .86rem;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+  text-align:center;
+
+  padding:
+    55px 10px;
+
+  color:
+    var(--muted);
+
+  animation:
+    fadeIn .5s;
+
+}
+
+
+.empty-icon{
+
+  font-size:
+    2.4rem;
+
+  display:block;
+
+  margin-bottom:
+    10px;
+
+  animation:
+    brainFloat 2.5s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes brainFloat{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+}
+
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  color:
+    var(--muted);
+
+  font-size:
+    .62rem;
+
+  margin-top:
+    16px;
+
+}
+
+
+footer strong{
+
+  color:
+    var(--cyan);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+  body{
+
+    padding:
+      25px 13px 60px;
+
+  }
+
+
+  .title{
+
+    font-size:
+      1.25rem;
+
+  }
+
+
+  .ai-icon{
+
+    width:40px;
+
+    height:40px;
+
+    font-size:19px;
+
+  }
+
+
+  .status{
+
+    font-size:
+      .52rem;
+
+  }
+
+
+  .stats{
+
+    gap:7px;
+
+  }
+
+
+  .stat{
+
+    padding:
+      12px;
+
+  }
+
+
+  .stat-value{
+
+    font-size:
+      1.05rem;
+
+  }
+
+
+  .add-row{
+
+    flex-direction:
+      column;
+
+  }
+
+
+  .add-btn{
+
+    padding:
+      13px;
+
+  }
+
+
+  .task{
+
+    padding:
+      13px;
+
+  }
+
+
+  .actions button{
+
+    font-size:
+      .52rem;
+
+    padding:
+      5px 6px;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+
+    animation-duration:
+      .001s !important;
+
+    transition-duration:
+      .001s !important;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <div class="brand">
+
+    <div class="ai-icon">
+      🧠
+    </div>
+
+    <div>
+
+      <div class="title">
+
+        Neural
+        <span>Tasks</span>
+
+      </div>
+
+      <div class="subtitle">
+
+        AI & ML Student Productivity Workspace
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="status">
+
+    <span class="status-dot"></span>
+
+    AI SYSTEM ONLINE
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<div class="stats">
+
+  <div class="stat">
+
+    <div class="stat-label">
+      Total Tasks
+    </div>
+
+    <div
+      class="stat-value"
+      id="totalStat">
+      0
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-label">
+      Completed
+    </div>
+
+    <div
+      class="stat-value"
+      id="completedStat">
+      0
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-label">
+      Productivity
+    </div>
+
+    <div
+      class="stat-value"
+      id="productivityStat">
+      0%
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADD TASK
+===================================================== -->
+
+<div class="add-card">
+
+  <form
+    class="add-row"
+    id="addForm">
+
+    <input
+      type="text"
+      id="taskInput"
+      placeholder="What AI/ML task are you working on?"
+      maxlength="200"
+      autocomplete="off"
+    >
+
+    <button
+      class="add-btn"
+      type="submit">
+
+      + ADD TASK
+
+    </button>
+
+  </form>
+
+
+  <div class="categories">
+
+    <button
+      class="category selected"
+      data-category="ML">
+
+      🤖 Machine Learning
+
+    </button>
+
+
+    <button
+      class="category"
+      data-category="Python">
+
+      🐍 Python
+
+    </button>
+
+
+    <button
+      class="category"
+      data-category="Deep Learning">
+
+      🧠 Deep Learning
+
+    </button>
+
+
+    <button
+      class="category"
+      data-category="Data Science">
+
+      📊 Data Science
+
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FILTER
+===================================================== -->
+
+<div class="control-row">
+
+  <div
+    class="filters"
+    id="filters">
+
+    <button
+      class="active"
+      data-filter="all">
+
+      All
+
+    </button>
+
+    <button
+      data-filter="active">
+
+      Open
+
+    </button>
+
+    <button
+      data-filter="done">
+
+      Done
+
+    </button>
+
+  </div>
+
+
+  <div
+    class="progress-text"
+    id="progressText">
+
+    0% COMPLETE
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<div class="progress">
+
+  <div
+    class="progress-fill"
+    id="progressFill">
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TASK LIST
+===================================================== -->
+
+<ul id="taskList"></ul>
+
+
+
+<!-- =====================================================
+     EMPTY
+===================================================== -->
+
+<div
+  class="empty"
+  id="empty"
+  hidden>
+
+  <span class="empty-icon">
+    🧠
+  </span>
+
+  Neural network is waiting...
+
+  <br>
+
+  Add your first AI/ML task.
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <span id="doneText">
+    0 completed
+  </span>
+
+  <span>
+    <strong id="openText">
+      0 open
+    </strong>
+  </span>
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE =
+  "neuralTasks";
+
+
+let tasks =
+  JSON.parse(
+    localStorage.getItem(STORAGE)
+    || "[]"
+  );
+
+
+let currentFilter =
+  "all";
+
+
+let selectedCategory =
+  "ML";
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const addForm =
+  document.getElementById(
+    "addForm"
+  );
+
+
+const taskInput =
+  document.getElementById(
+    "taskInput"
+  );
+
+
+const taskList =
+  document.getElementById(
+    "taskList"
+  );
+
+
+const empty =
+  document.getElementById(
+    "empty"
+  );
+
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+
+const progressText =
+  document.getElementById(
+    "progressText"
+  );
+
+
+const totalStat =
+  document.getElementById(
+    "totalStat"
+  );
+
+
+const completedStat =
+  document.getElementById(
+    "completedStat"
+  );
+
+
+const productivityStat =
+  document.getElementById(
+    "productivityStat"
+  );
+
+
+const doneText =
+  document.getElementById(
+    "doneText"
+  );
+
+
+const openText =
+  document.getElementById(
+    "openText"
+  );
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function save(){
+
+  localStorage.setItem(
+    STORAGE,
+    JSON.stringify(tasks)
+  );
+
+}
+
+
+/* =====================================================
+   CATEGORY SELECTION
+===================================================== */
+
+document
+  .querySelectorAll(".category")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".category")
+        .forEach(btn =>
+          btn.classList.remove("selected")
+        );
+
+      button.classList.add("selected");
+
+      selectedCategory =
+        button.dataset.category;
+
+    });
+
+  });
+
+
+/* =====================================================
+   ADD TASK
+===================================================== */
+
+addForm.addEventListener("submit", function(e){
+
+  e.preventDefault();
+
+  const text =
+    taskInput.value.trim();
+
+  if(!text) return;
+
+
+  const task = {
+
+    id: Date.now(),
+
+    text: text,
+
+    category: selectedCategory,
+
+    done: false,
+
+    createdAt:
+      new Date().toLocaleString()
+
+  };
+
+
+  tasks.unshift(task);
+
+  save();
+
+  taskInput.value = "";
+
+  render();
+
+});
+
+
+/* =====================================================
+   FILTER BUTTONS
+===================================================== */
+
+document
+  .querySelectorAll("#filters button")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      document
+        .querySelectorAll("#filters button")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+      currentFilter =
+        button.dataset.filter;
+
+      render();
+
+    });
+
+  });
+
+
+/* =====================================================
+   TOGGLE TASK
+===================================================== */
+
+function toggleTask(id){
+
+  tasks =
+    tasks.map(task => {
+
+      if(task.id === id){
+
+        return {
+
+          ...task,
+
+          done: !task.done
+
+        };
+
+      }
+
+      return task;
+
+    });
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =====================================================
+   DELETE TASK
+===================================================== */
+
+function deleteTask(id){
+
+  const item =
+    document.querySelector(
+      `[data-id="${id}"]`
+    );
+
+
+  if(item){
+
+    item.style.opacity = "0";
+
+    item.style.transform =
+      "translateX(70px) scale(.85)";
+
+
+    setTimeout(() => {
+
+      tasks =
+        tasks.filter(
+          task => task.id !== id
+        );
+
+      save();
+
+      render();
+
+    }, 250);
+
+  }
+
+}
+
+
+/* =====================================================
+   EDIT TASK
+===================================================== */
+
+function editTask(id){
+
+  const task =
+    tasks.find(
+      task => task.id === id
+    );
+
+
+  if(!task) return;
+
+
+  const item =
+    document.querySelector(
+      `[data-id="${id}"]`
+    );
+
+
+  const content =
+    item.querySelector(
+      ".task-content"
+    );
+
+
+  content.innerHTML = `
+
+    <input
+      class="edit-input"
+      id="edit-${id}"
+      value="${escapeHTML(task.text)}"
+      maxlength="200"
+    >
+
+  `;
+
+
+  const input =
+    document.getElementById(
+      `edit-${id}`
+    );
+
+
+  input.focus();
+
+  input.select();
+
+
+  let finished = false;
+
+
+  function finishEdit(){
+
+    if(finished) return;
+
+    finished = true;
+
+
+    const value =
+      input.value.trim();
+
+
+    if(value){
+
+      task.text = value;
+
+      save();
+
+    }
+
+
+    render();
+
+  }
+
+
+  input.addEventListener(
+    "keydown",
+    function(e){
+
+      if(e.key === "Enter"){
+
+        e.preventDefault();
+
+        finishEdit();
+
+      }
+
+
+      if(e.key === "Escape"){
+
+        finished = true;
+
+        render();
+
+      }
+
+    }
+  );
+
+
+  input.addEventListener(
+    "blur",
+    finishEdit
+  );
+
+}
+
+
+/* =====================================================
+   RENDER TASKS
+===================================================== */
+
+function render(){
+
+  let filtered =
+    [...tasks];
+
+
+  /* FILTER */
+
+  if(currentFilter === "active"){
+
+    filtered =
+      tasks.filter(
+        task => !task.done
+      );
+
+  }
+
+
+  if(currentFilter === "done"){
+
+    filtered =
+      tasks.filter(
+        task => task.done
+      );
+
+  }
+
+
+  taskList.innerHTML = "";
+
+
+  /* EMPTY STATE */
+
+  if(filtered.length === 0){
+
+    empty.hidden = false;
+
+  }else{
+
+    empty.hidden = true;
+
+  }
+
+
+  /* CREATE TASK CARDS */
+
+  filtered.forEach((task, index) => {
+
+    const li =
+      document.createElement("li");
+
+
+    li.className =
+      "task";
+
+
+    if(task.done){
+
+      li.classList.add("done");
+
+    }
+
+
+    li.dataset.id =
+      task.id;
+
+
+    /*
+      Animation delay makes
+      cards appear one by one.
+    */
+
+    li.style.animationDelay =
+      `${index * 0.05}s`;
+
+
+    const categoryClass =
+      getCategoryClass(
+        task.category
+      );
+
+
+    li.innerHTML = `
+
+      <button
+        class="check"
+        title="Complete task"
+        onclick="toggleTask(${task.id})">
+
+        ${task.done ? "✓" : ""}
+
+      </button>
+
+
+      <div class="task-content">
+
+        <div class="task-text">
+
+          ${escapeHTML(task.text)}
+
+        </div>
+
+
+        <div class="task-meta">
+
+          <span
+            class="badge ${categoryClass}">
+
+            ${getCategoryIcon(task.category)}
+            ${escapeHTML(task.category)}
+
+          </span>
+
+
+          <span class="time">
+
+            ${escapeHTML(task.createdAt)}
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          onclick="editTask(${task.id})">
+
+          Edit
+
+        </button>
+
+
+        <button
+          class="delete"
+          onclick="deleteTask(${task.id})">
+
+          Delete
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    taskList.appendChild(li);
+
+  });
+
+
+  updateStats();
+
+}
+
+
+/* =====================================================
+   CATEGORY CLASS
+===================================================== */
+
+function getCategoryClass(category){
+
+  if(category === "Python"){
+
+    return "python";
+
+  }
+
+
+  if(category === "Deep Learning"){
+
+    return "dl";
+
+  }
+
+
+  if(category === "Data Science"){
+
+    return "data";
+
+  }
+
+
+  return "ml";
+
+}
+
+
+/* =====================================================
+   CATEGORY ICON
+===================================================== */
+
+function getCategoryIcon(category){
+
+  if(category === "Python"){
+
+    return "🐍";
+
+  }
+
+
+  if(category === "Deep Learning"){
+
+    return "🧠";
+
+  }
+
+
+  if(category === "Data Science"){
+
+    return "📊";
+
+  }
+
+
+  return "🤖";
+
+}
+
+
+/* =====================================================
+   UPDATE STATISTICS
+===================================================== */
+
+function updateStats(){
+
+  const total =
+    tasks.length;
+
+
+  const completed =
+    tasks.filter(
+      task => task.done
+    ).length;
+
+
+  const open =
+    total - completed;
+
+
+  const percentage =
+    total === 0
+      ? 0
+      : Math.round(
+          (completed / total) * 100
+        );
+
+
+  /* TOP STATS */
+
+  totalStat.textContent =
+    total;
+
+
+  completedStat.textContent =
+    completed;
+
+
+  productivityStat.textContent =
+    percentage + "%";
+
+
+  /* PROGRESS */
+
+  progressFill.style.width =
+    percentage + "%";
+
+
+  progressText.textContent =
+    percentage +
+    "% COMPLETE";
+
+
+  /* FOOTER */
+
+  doneText.textContent =
+    completed +
+    " completed";
+
+
+  openText.textContent =
+    open +
+    " open";
+
+}
+
+
+/* =====================================================
+   HTML SAFETY
+===================================================== */
+
+function escapeHTML(text){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   KEYBOARD SHORTCUT
+   Ctrl + Enter → Add Task
+===================================================== */
+
+taskInput.addEventListener(
+  "keydown",
+  function(e){
+
+    if(
+      e.key === "Enter" &&
+      (e.ctrlKey || e.metaKey)
+    ){
+
+      addForm.requestSubmit();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
